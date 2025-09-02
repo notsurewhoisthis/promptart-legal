@@ -5,98 +5,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PromptArt - Legal Documents</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1d1d1f;
+            background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
             min-height: 100vh;
         }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        
+        .hero {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+            padding: 80px 20px;
             text-align: center;
         }
-        h1 {
-            color: #000;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .logo {
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 60px;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        
+        .tagline {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.4em;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+        
+        .app-store-badge {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .app-store-badge img {
+            height: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: -50px auto 0;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.98);
+            border-radius: 20px;
+            padding: 40px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00ff88 0%, #00cc66 100%);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,255,136,0.2);
+        }
+        
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .card-title {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+        
+        .card-description {
+            color: #6e6e73;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #86868b;
+        }
+        
+        .footer-logo {
+            font-size: 40px;
             margin-bottom: 20px;
         }
-        .tagline {
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 1.2em;
+        
+        .footer-text {
+            font-size: 0.95em;
+            margin-bottom: 10px;
         }
-        .links {
+        
+        .footer-links {
+            margin-top: 30px;
             display: flex;
             justify-content: center;
             gap: 30px;
             flex-wrap: wrap;
         }
-        .link-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px;
-            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
-            border-radius: 10px;
+        
+        .footer-link {
+            color: #00ff88;
             text-decoration: none;
-            color: white;
-            transition: transform 0.3s;
-            min-width: 200px;
+            font-size: 0.95em;
+            transition: opacity 0.2s;
         }
-        .link-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,255,136,0.3);
+        
+        .footer-link:hover {
+            opacity: 0.7;
         }
-        .link-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-        .link-title {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #666;
-            font-size: 0.9em;
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .tagline {
+                font-size: 1.1em;
+            }
+            .cards {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">🎨</div>
-        <h1>PromptArt</h1>
-        <p class="tagline">Transform Your Photos with AI Art</p>
-        
-        <div class="links">
-            <a href="terms-of-use.html" class="link-card">
-                <div class="link-icon">📜</div>
-                <div class="link-title">Terms of Use</div>
-            </a>
-            
-            <a href="privacy-policy.html" class="link-card">
-                <div class="link-icon">🔒</div>
-                <div class="link-title">Privacy Policy</div>
-            </a>
-        </div>
-        
-        <div class="footer">
-            <p>© 2025 PromptArt. All rights reserved.</p>
-            <p>Available on the App Store</p>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="app-icon">🎨</div>
+            <h1>PromptArt</h1>
+            <p class="tagline">Transform Your Photos into Stunning AI Art</p>
+            <div class="app-store-badge">
+                <svg width="140" height="50" viewBox="0 0 140 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="140" height="50" rx="8" fill="black"/>
+                    <path d="M29.5 25C29.5 19.5 34.2 16.5 34.4 16.4C31.8 12.8 28 12.4 26.6 12.3C23.4 12 20.4 14.1 18.8 14.1C17.2 14.1 14.6 12.4 11.9 12.4C8.4 12.5 5.2 14.3 3.4 17.3C-0.4 23.4 2.3 32.3 5.8 37.2C7.6 39.6 9.7 42.3 12.4 42.2C15 42.1 16 40.7 19.1 40.7C22.2 40.7 23.1 42.2 26 42.2C28.7 42.1 30.6 39.7 32.3 37.3C34.4 34.5 35.2 31.8 35.2 31.6C35.2 31.5 29.6 29.4 29.5 25Z" fill="white"/>
+                    <path d="M24.2 9C25.6 7.3 26.5 4.9 26.3 2.5C24.3 2.6 21.8 3.9 20.3 5.6C19 7.1 17.9 9.5 18.1 11.8C20.4 12 22.7 10.7 24.2 9Z" fill="white"/>
+                    <text x="45" y="20" font-family="Arial, sans-serif" font-size="10" fill="white">Available on the</text>
+                    <text x="45" y="34" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="white">App Store</text>
+                </svg>
+            </div>
         </div>
     </div>
+    
+    <div class="container">
+        <div class="cards">
+            <a href="terms-of-use.html" class="card">
+                <span class="card-icon">📜</span>
+                <h2 class="card-title">Terms of Use</h2>
+                <p class="card-description">Read our terms and conditions for using PromptArt, including subscription details and user agreements.</p>
+            </a>
+            
+            <a href="privacy-policy.html" class="card">
+                <span class="card-icon">🔒</span>
+                <h2 class="card-title">Privacy Policy</h2>
+                <p class="card-description">Learn how we collect, use, and protect your data. Your privacy is our priority.</p>
+            </a>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-logo">🎨</div>
+        <p class="footer-text">© 2025 PromptArt. All rights reserved.</p>
+        <p class="footer-text">Transform your photos into stunning AI-generated art.</p>
+        <div class="footer-links">
+            <a href="terms-of-use.html" class="footer-link">Terms</a>
+            <a href="privacy-policy.html" class="footer-link">Privacy</a>
+            <a href="mailto:support@promptart.app" class="footer-link">Contact</a>
+        </div>
+    </footer>
 </body>
 </html>
